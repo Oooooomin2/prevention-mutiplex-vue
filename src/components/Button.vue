@@ -20,7 +20,7 @@ const props = defineProps({
 });
 
 const disabled = ref(false);
-const clickButton = function(){
+const clickButton = function () {
   disabled.value = true;
   props.func;
 }
@@ -35,14 +35,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <button
-    class="hello-button"
-    :type="type"
-    :class="class"
-    :disabled="disabled"
-    :style="style"
-    @click="clickButton"
-  >
+  <button :type="type" :class="class" :disabled="disabled" :style="style" @click="clickButton">
     {{ text }}
   </button>
 </template>
