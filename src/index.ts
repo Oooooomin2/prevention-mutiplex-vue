@@ -1,2 +1,3 @@
 import Button from "./components/Button.vue";
-export { Button };
+import Link from "./components/Link.vue";
+export { Button, Link };
