@@ -9,37 +9,32 @@ const props = defineProps({
     type: String
   },
   style: {
-    type: String
+    type: String,
+    default: ''
   },
   func: {
     type: Function
   }
 });
 
-const classDisabled = ref('');
+const originStyle = ref('');
 const clickLink = function () {
-  classDisabled.value = 'disabled';
+  originStyle.value = 'pointer-events: none;';
   props.func;
 }
 
 
 onMounted(() => {
-  window.addEventListener('pageshow', () => classDisabled.value = '');
+  window.addEventListener('pageshow', () => originStyle.value = '');
 });
 
 onUnmounted(() => {
-  window.removeEventListener('pageshow', () => classDisabled.value = '');
+  window.removeEventListener('pageshow', () => originStyle.value = '');
 });
 </script>
 
 <template>
-  <a :class="`${classDisabled} ${props.class}`" :style="style" href="javascript:void(0)" @click="clickLink">
+  <a :class="class" :style="`${originStyle} ${props.style}`" href="javascript:void(0)" @click="clickLink">
     {{ text }}
   </a>
 </template>
-
-<style scoped>
-.disabled {
-  pointer-events: none;
-}
-</style>
