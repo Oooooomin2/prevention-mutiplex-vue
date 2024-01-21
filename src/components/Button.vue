@@ -16,26 +16,41 @@ const props = defineProps({
   },
   type: {
     type: String as () => "button" | "submit" | "reset" | undefined,
+  },
+  isDisabledButton: {
+    type: Boolean,
+    default: false
   }
 });
 
 const disabled = ref(false);
+const isDisabledButton = ref(false);
 const clickButton = function () {
-  disabled.value = true;
-  props.func;
+  if (props.isDisabledButton) {
+    isDisabledButton.value = true;
+  }
+
+  if (!disabled.value) {
+    disabled.value = true;
+    if(props.func !== undefined){
+      props.func();
+    }
+  }
 }
 
 onMounted(() => {
   window.addEventListener('pageshow', () => disabled.value = false);
+  window.addEventListener('pageshow', () => isDisabledButton.value = false);
 });
 
 onUnmounted(() => {
   window.removeEventListener('pageshow', () => disabled.value = false);
+  window.removeEventListener('pageshow', () => isDisabledButton.value = false);
 });
 </script>
 
 <template>
-  <button :type="type" :class="class" :disabled="disabled" :style="style" @click="clickButton">
+  <button :type="type" :class="class" :disabled="isDisabledButton" :style="style" @click="clickButton">
     {{ text }}
   </button>
 </template>

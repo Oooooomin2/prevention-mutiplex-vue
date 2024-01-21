@@ -24,12 +24,23 @@ import { Button, Link } from "prevention-multiplex-vue";
 
 ### Button
 
+The props `:isDisabledButton` operates on the button's disabled element.
+
+If set to true, the button's disabled element becomes true.
+
+*Default is false.
+*No matter which option you select, multiple transmission will not be performed. The only thing that changes is how the button looks after you click it.
+
 ```vue
-<Button :text="'Your ButtonText'" @click="YourFunc"></Button>
+<Button
+    :text="'Your ButtonText'"
+    :func="YourFunc"
+    :isDisabledButton="false"
+></Button>
 ```
 
 ### Link
 
 ```vue
-<Link :text="'Your LinkText'" @click="YourFunc"></Link>
+<Link :text="'Your LinkText'" :func="YourFunc"></Link>
 ```
