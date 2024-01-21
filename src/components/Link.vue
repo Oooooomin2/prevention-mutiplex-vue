@@ -20,7 +20,9 @@ const props = defineProps({
 const originStyle = ref('');
 const clickLink = function () {
   originStyle.value = 'pointer-events: none;';
-  props.func;
+  if (props.func !== undefined) {
+    props.func();
+  }
 }
 
 
